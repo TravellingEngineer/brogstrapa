@@ -4,6 +4,10 @@ Reference platform for validation of the [barney](https://github.com/TravellingE
 
 Explicitly this is **not** a general purpose operating system, it is instead a launchpad for others efforts. Currently no effort is made towards stability until such point as `barney` stabilises, at which point we'll build a proper process around this repository to allow derivative works in a streamlined fashion.
 
+## The name
+
+I know, I know. You can blame Arjan van de Ven for his delightful comment [here](https://lnkd.in/p/eGRYt4X6).
+
 ## License
 
 Copyright © 2026 Ikey Doherty
