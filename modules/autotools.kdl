@@ -10,7 +10,7 @@ module autotools {
   action configure {
     properties {
       (string) command "./configure"
-      (string) prefix "/usr"
+      (string) prefix (var)env::prefix
       (list) enable "shared"
       (list) disable "static"
       (list) with
@@ -24,7 +24,7 @@ module autotools {
       with enable {
         emit " "
         foreach prop enable {
-          emit "--enable-" (prop)prop
+          emit "--enable-" (var)prop
         }
       }
       with disable {
