@@ -2,6 +2,41 @@
 // SPDX-License-Identifier: MPL-2.0
 
 // Autotools module
+//
+// Configure & build classical `configure/make/install` projects
 module autotools {
 
+  // Configure an autotools project given a `./configure` script
+  action configure {
+    properties {
+      (string) command "./configure"
+      (string) prefix "/usr"
+      (list) enable "shared"
+      (list) disable "static"
+      (list) with
+      (list) without
+      (string) target (var)env::target
+    }
+
+    // Begin writing a shell script
+    execute {
+      emit (prop)command "--prefix=" (prop)prefix
+      with enable {
+        emit " "
+        foreach prop enable {
+          emit "--enable-" (prop)prop
+        }
+      }
+      with disable {
+        emit " "
+        foreach prop disable {
+          emit "--disable-" (var)prop
+        }
+      }
+      with target {
+        emit " --target=" (var)env::target
+      }
+      emit_newline
+    }
+  }
 }
