@@ -1,0 +1,16 @@
+// SPDX-FileCopyrightText: 2026 Ikey Doherty
+// SPDX-License-Identifier: MPL-2.0
+
+/// Example distro configuration
+
+/// Declare our project with `ID` equal to `brogstrapa`
+project brogstrapa {
+    name "Brógstrapa"
+    summary "A properly engineered distro"
+
+    // maps to os-release fields
+    links {
+        home "https://github.com/TravellingEngineer/brogstrapa"
+        bugs "https://github.com/TravellingEngineer/brogstrapa/issues"
+    }
+}
