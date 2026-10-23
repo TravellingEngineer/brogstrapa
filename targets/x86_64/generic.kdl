@@ -2,3 +2,27 @@
 // SPDX-License-Identifier: MPL-2.0
 
 /// Generic x86_64 bootstrap configuration phases
+
+// stage1
+phase crosstools {
+    variables {
+        target "x86_64-linux-gnu"
+        prefix "/tools"
+    }
+}
+
+// stage2
+phase isolated {
+    variables {
+        target "x86_64-linux-gnu"
+        prefix "/usr"
+    }
+}
+
+// stage3
+phase selfhosting {
+    variables {
+        target "x86_64-linux-gnu"
+        prefix "/usr"
+    }
+}
