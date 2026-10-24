@@ -1,0 +1,47 @@
+// SPDX-FileCopyrightText: 2026 Ikey Doherty
+// SPDX-License-Identifier: MPL-2.0
+
+(barney)version 1
+
+package "util-linux" {
+    metadata {
+        version "2.42.4"
+        release 1
+
+        summary "util-linux is a random collection of Linux utilities"
+        description "util-linux is a random collection of Linux utilities"
+    }
+
+    properties {
+        (bool) with_systemd #true
+        (list) enabled {
+            "systemd"
+        }
+        (list) disabled {}
+    }
+
+    variant "bootstrap" {
+        with_systemd #false
+        enabled { }
+        disabled {
+            "systemd"
+        }
+    }
+
+    depends {
+        build {
+            (binary)make
+            util-linux variant="bootstrap" conflicts=(prop)with_systemd
+            systemd if=(prop)with_systemd
+        }
+    }
+
+    build {
+        autotools::configure enable=(prop)enabled disable=(prop)disabled
+        autotools::make
+    }
+
+    install {
+        autotools::make_install
+    }
+}
